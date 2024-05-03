@@ -1,27 +1,18 @@
 {
   "name": "fluent-bit",
-  "version": "1.2.4",
+  "version": "1.2.4.9",
   "slug": "fluent_bit",
   "description": "Fluent-Bit log shipping",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "init": false,
   "startup": "services",
   "boot": "auto",
-  "docker_api": true,
-  "privileged": ["SYS_ADMIN"],
+  "map": ["addon_config"],
+  "journald": true,
   "options": {
-     "host": "elk",
-     "port": 8888,
-     "path": "/_bulk",
-     "http_user": "",
-     "http_passwd": "",
-     "tls": false
+    "config_file": "fluent_bit.conf"
    },
   "schema": {
-    "host": "str",
-    "port": "int(1,65535)",
-    "path": "str?",
-    "http_user": "str",
-    "http_passwd": "str",
-    "tls": "bool"
+    "config_file": "str"
   }
 }

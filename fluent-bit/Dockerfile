@@ -1,6 +1,10 @@
-FROM alpine
+ARG BUILD_FROM
+FROM ${BUILD_FROM}
 
-RUN apk add python3 py3-pip
-RUN python3 -m pip install docker
+RUN apt-get update -y && \
+    apt-get install bash gpg python3 python3-pip --no-install-recommends -y
+
+RUN curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
+
 COPY run.py /run.py
 CMD ["python3", "-u", "/run.py"]
